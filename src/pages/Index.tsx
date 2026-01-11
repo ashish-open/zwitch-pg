@@ -1,10 +1,11 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
-import CaseStudies from "@/components/CaseStudies";
+import PaymentMethods from "@/components/PaymentMethods";
 import Services from "@/components/Services";
+import PricingOffer from "@/components/PricingOffer";
 import Process from "@/components/Process";
 import Testimonials from "@/components/Testimonials";
-import WhyChooseUs from "@/components/WhyChooseUs";
+import TrustBadges from "@/components/TrustBadges";
 import ContactForm from "@/components/ContactForm";
 import Footer from "@/components/Footer";
 
@@ -14,11 +15,12 @@ const Index = () => {
       <Header />
       <main>
         <Hero />
-        <CaseStudies />
+        <PaymentMethods />
         <Services />
+        <PricingOffer />
         <Process />
+        <TrustBadges />
         <Testimonials />
-        <WhyChooseUs />
         <ContactForm />
       </main>
       <Footer />

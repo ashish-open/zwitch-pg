@@ -2,48 +2,50 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
+/* Zwitch Payment Gateway - Design System
+   Brand Colors: Orange (#FF6600) on Dark backgrounds
+   All colors MUST be HSL.
 */
 
 @layer base {
   :root {
-    --background: 220 15% 7%;
+    --background: 0 0% 0%;
     --foreground: 0 0% 98%;
 
-    --card: 220 15% 10%;
+    --card: 0 0% 6%;
     --card-foreground: 0 0% 98%;
 
-    --popover: 220 15% 10%;
+    --popover: 0 0% 6%;
     --popover-foreground: 0 0% 98%;
 
-    --primary: 186 95% 48%;
-    --primary-foreground: 220 15% 7%;
+    --primary: 24 100% 50%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 220 12% 15%;
+    --secondary: 24 20% 12%;
     --secondary-foreground: 0 0% 98%;
 
-    --muted: 220 12% 20%;
-    --muted-foreground: 0 0% 70%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 65%;
 
-    --accent: 186 95% 48%;
-    --accent-foreground: 220 15% 7%;
+    --accent: 24 100% 50%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 220 12% 20%;
-    --input: 220 12% 20%;
-    --ring: 186 95% 48%;
+    --border: 0 0% 18%;
+    --input: 0 0% 18%;
+    --ring: 24 100% 50%;
 
     --radius: 0.75rem;
 
-    /* Gradient tokens */
-    --gradient-primary: linear-gradient(135deg, hsl(186 95% 48%), hsl(210 100% 60%));
-    --gradient-hero: linear-gradient(180deg, hsl(220 15% 7%) 0%, hsl(220 15% 10%) 100%);
+    /* Zwitch Brand Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(24 100% 50%), hsl(30 100% 60%));
+    --gradient-hero: linear-gradient(180deg, hsl(0 0% 0%) 0%, hsl(0 0% 6%) 100%);
+    --gradient-orange-glow: radial-gradient(ellipse at center, hsl(24 100% 50% / 0.15) 0%, transparent 70%);
     
     /* Shadow tokens */
-    --shadow-glow: 0 0 40px hsl(186 95% 48% / 0.3);
+    --shadow-glow: 0 0 40px hsl(24 100% 50% / 0.4);
     --shadow-card: 0 10px 30px -10px hsl(0 0% 0% / 0.5);
     
     /* Animation tokens */
@@ -82,5 +84,9 @@ All colors MUST be HSL.
   
   .hover-glow:hover {
     box-shadow: var(--shadow-glow);
+  }
+
+  .orange-glow {
+    background: var(--gradient-orange-glow);
   }
 }
