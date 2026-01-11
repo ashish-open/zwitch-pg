@@ -1,9 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { Card } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Shield, Clock, CheckCircle } from "lucide-react";
 import { motion } from "framer-motion";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 
@@ -25,11 +24,10 @@ const ContactForm = () => {
             transition={{ duration: 0.6 }}
           >
             <h2 className="font-display font-bold text-4xl md:text-5xl lg:text-6xl mb-6">
-              Ready to Start Accepting{" "}
-              <span className="gradient-text">Payments?</span>
+              Get <span className="gradient-text">1.5% Pricing</span> Today
             </h2>
             <p className="text-lg text-muted-foreground">
-              Get started with Zwitch Payment Gateway at just 1.5% transaction rate.
+              Join 42 lakh+ businesses using Zwitch for payments.
             </p>
           </motion.div>
           
@@ -40,6 +38,22 @@ const ContactForm = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <Card className="bg-card border-border p-8 md:p-10">
+              {/* Trust indicators at top */}
+              <div className="flex flex-wrap items-center justify-center gap-4 mb-8 pb-6 border-b border-border">
+                <span className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <Shield className="w-4 h-4 text-primary" />
+                  RBI Licensed
+                </span>
+                <span className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <Clock className="w-4 h-4 text-primary" />
+                  Go live in hours
+                </span>
+                <span className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <CheckCircle className="w-4 h-4 text-primary" />
+                  No setup fees
+                </span>
+              </div>
+              
               <form className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
@@ -56,7 +70,7 @@ const ContactForm = () => {
                   
                   <div>
                     <label htmlFor="email" className="block text-sm font-medium mb-2">
-                      Email Address *
+                      Work Email *
                     </label>
                     <Input 
                       id="email"
@@ -84,7 +98,7 @@ const ContactForm = () => {
                   
                   <div>
                     <label htmlFor="volume" className="block text-sm font-medium mb-2">
-                      Monthly Transaction Volume *
+                      Expected Monthly Volume *
                     </label>
                     <Select>
                       <SelectTrigger className="bg-secondary border-border">
@@ -101,31 +115,41 @@ const ContactForm = () => {
                   </div>
                 </div>
                 
-                <div>
-                  <label htmlFor="message" className="block text-sm font-medium mb-2">
-                    Tell us about your business (Optional)
-                  </label>
-                  <Textarea 
-                    id="message"
-                    placeholder="What industry are you in? What payment features do you need?" 
-                    className="bg-secondary border-border min-h-24"
-                  />
-                </div>
-                
                 <Button 
                   type="submit" 
                   size="lg" 
-                  className="w-full bg-primary hover:bg-primary/90 text-primary-foreground hover-glow"
+                  className="w-full bg-primary hover:bg-primary/90 text-primary-foreground hover-glow py-6 text-lg"
                 >
                   Get Started with 1.5% Rate
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
                 
+                {/* Reassurance text */}
                 <p className="text-xs text-muted-foreground text-center">
-                  Our team will reach out within 24 hours to help you get started.
+                  No spam. No sales pressure. Our onboarding team will reach out within 24 hours.
                 </p>
               </form>
             </Card>
+          </motion.div>
+          
+          {/* Alternative CTA for high volume */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={isVisible ? { opacity: 1 } : { opacity: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="text-center mt-8"
+          >
+            <p className="text-sm text-muted-foreground">
+              Processing ₹1 Cr+ monthly?{" "}
+              <a 
+                href="https://zwitch.open.money/register" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-primary hover:underline font-medium"
+              >
+                Talk to our enterprise team →
+              </a>
+            </p>
           </motion.div>
         </div>
       </div>

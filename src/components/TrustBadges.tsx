@@ -5,24 +5,28 @@ import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 
 const trustBadges = [
   {
+    icon: Building,
+    title: "RBI Licensed",
+    description: "Licensed Payment Aggregator by Reserve Bank of India.",
+    license: "PA License"
+  },
+  {
     icon: Shield,
-    title: "PCI DSS Compliance",
-    description: "Secure handling of cardholder information with every transaction."
+    title: "PCI DSS Level 1",
+    description: "Highest level of cardholder data security compliance.",
+    license: "Certified"
   },
   {
     icon: Award,
-    title: "ISO 27001 Certified",
-    description: "Global standard for information security management."
+    title: "ISO 27001",
+    description: "Global standard for information security management.",
+    license: "Certified"
   },
   {
     icon: Lock,
-    title: "SOC-2 Compliance",
-    description: "Data security, availability, processing integrity, and privacy."
-  },
-  {
-    icon: Building,
-    title: "RBI Licensed",
-    description: "Licensed Payment Aggregator/Payment Gateway by RBI."
+    title: "SOC-2 Type II",
+    description: "Verified data security, availability & privacy controls.",
+    license: "Compliant"
   }
 ];
 
@@ -34,17 +38,20 @@ const TrustBadges = () => {
       <div className="container mx-auto px-6" ref={ref}>
         {/* Section Header */}
         <motion.div 
-          className="max-w-3xl mx-auto text-center mb-16"
+          className="max-w-3xl mx-auto text-center mb-6"
           initial={{ opacity: 0, y: 30 }}
           animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.6 }}
         >
           <h2 className="font-display font-bold text-4xl md:text-5xl lg:text-6xl mb-6">
-            Why Clients{" "}
-            <span className="gradient-text">Trust Zwitch</span>
+            Secure &{" "}
+            <span className="gradient-text">Compliant</span>
           </h2>
-          <p className="text-lg text-muted-foreground">
-            Rigorously compliant with industry standards, making it the right choice for businesses of all sizes.
+          <p className="text-lg text-muted-foreground mb-4">
+            Your money, data, and compliance handled to the highest standards.
+          </p>
+          <p className="text-sm text-primary font-medium">
+            Used by banks & regulated fintechs across India
           </p>
         </motion.div>
         
@@ -62,6 +69,10 @@ const TrustBadges = () => {
                 <Card className="bg-card border-border p-6 text-center hover:border-primary/50 transition-all duration-300 hover-scale h-full">
                   <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mx-auto mb-4">
                     <Icon className="w-7 h-7 text-primary" />
+                  </div>
+                  
+                  <div className="inline-block bg-primary/10 text-primary text-xs font-semibold px-2 py-1 rounded mb-3">
+                    {badge.license}
                   </div>
                   
                   <h3 className="font-display font-bold text-lg mb-2">{badge.title}</h3>

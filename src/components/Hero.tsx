@@ -1,11 +1,12 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight, Flame, Shield, Zap, Clock } from "lucide-react";
 
 const Hero = () => {
   const stats = [
     { value: "42 Lakh+", label: "Businesses Powered" },
     { value: "150+", label: "Payment Methods" },
-    { value: "$35B+", label: "Transactions Processed" },
+    { value: "99%+", label: "Success Rate" },
+    { value: "< 1 Day", label: "Avg. Integration Time" },
   ];
   
   return (
@@ -19,49 +20,73 @@ const Hero = () => {
       {/* Content */}
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
-          {/* Campaign Badge */}
-          <div className="inline-flex items-center space-x-2 bg-primary/10 border border-primary/30 backdrop-blur-sm px-5 py-2.5 rounded-full mb-8 animate-fade-in">
-            <Sparkles className="w-4 h-4 text-primary" />
-            <span className="text-sm font-semibold text-primary">Limited Offer: Just 1.5% Transaction Rate</span>
+          {/* Campaign Badge - More Urgent */}
+          <div className="inline-flex items-center space-x-2 bg-primary/20 border border-primary/50 backdrop-blur-sm px-5 py-2.5 rounded-full mb-8 animate-fade-in">
+            <Flame className="w-4 h-4 text-primary animate-pulse" />
+            <span className="text-sm font-bold text-primary">Limited Time Offer — Flat 1.5% Transaction Fee</span>
           </div>
           
-          {/* Headline */}
+          {/* Headline - Sharper & Specific */}
           <h1 className="font-display font-bold text-4xl md:text-6xl lg:text-7xl mb-6 animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
-            Boost Sales and Build Trust with a Secure, Flexible{" "}
-            <span className="gradient-text">Payment Gateway</span>
+            Accept Payments Faster with India's Most{" "}
+            <span className="gradient-text">Developer-Friendly</span>{" "}
+            Payment Gateway
           </h1>
           
-          {/* Subheadline */}
-          <p className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
-            Trusted by 42 lakh+ businesses to power seamless payments with 150+ options. Start accepting payments at just <strong className="text-foreground">1.5%</strong> – lowest in industry.
+          {/* Subheadline - Clear Value Props */}
+          <p className="text-lg md:text-xl text-muted-foreground mb-6 max-w-2xl mx-auto animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
+            Go live in hours. 150+ payment methods. Same-day settlements. Trusted by 42 lakh+ businesses.
+          </p>
+          <p className="text-xl md:text-2xl font-semibold text-foreground mb-10 animate-fade-in-up" style={{ animationDelay: "0.25s" }}>
+            Now at a flat <span className="gradient-text">1.5%</span> — limited period only.
           </p>
           
-          {/* CTAs */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16 animate-fade-in-up" style={{ animationDelay: "0.3s" }}>
-            <a 
-              href="https://zwitch.open.money/register"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground hover-glow w-full sm:w-auto text-base px-8">
-                Get Started at 1.5%
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-            </a>
-            <a 
-              href="https://developers.zwitch.io/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Button size="lg" variant="outline" className="w-full sm:w-auto border-border hover:bg-secondary text-base px-8">
-                View Documentation
-              </Button>
-            </a>
+          {/* CTAs - Stronger with Microcopy */}
+          <div className="flex flex-col items-center gap-4 mb-6 animate-fade-in-up" style={{ animationDelay: "0.3s" }}>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <a 
+                href="https://zwitch.open.money/register"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground hover-glow w-full sm:w-auto text-base px-8 py-6 text-lg">
+                  Get 1.5% Pricing Now
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              </a>
+              <a 
+                href="https://developers.zwitch.io/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Button size="lg" variant="outline" className="w-full sm:w-auto border-border hover:bg-secondary text-base px-8">
+                  See Integration Docs (5-min setup)
+                </Button>
+              </a>
+            </div>
+            
+            {/* Trust Microcopy - Immediate Risk Reversal */}
+            <div className="flex items-center justify-center gap-4 text-sm text-muted-foreground">
+              <span className="flex items-center gap-1">
+                <Shield className="w-4 h-4 text-primary" />
+                RBI-licensed
+              </span>
+              <span className="text-border">•</span>
+              <span className="flex items-center gap-1">
+                <Zap className="w-4 h-4 text-primary" />
+                No setup fees
+              </span>
+              <span className="text-border">•</span>
+              <span className="flex items-center gap-1">
+                <Clock className="w-4 h-4 text-primary" />
+                Free sandbox
+              </span>
+            </div>
           </div>
           
-          {/* Stats */}
-          <div className="animate-fade-in" style={{ animationDelay: "0.4s" }}>
-            <div className="grid grid-cols-3 gap-8 max-w-2xl mx-auto">
+          {/* Stats - Moved Up & Enhanced */}
+          <div className="animate-fade-in mt-12 pt-8 border-t border-border/50" style={{ animationDelay: "0.4s" }}>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto">
               {stats.map((stat, index) => (
                 <div 
                   key={stat.label}
