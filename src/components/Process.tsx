@@ -1,36 +1,32 @@
 import { Card } from "@/components/ui/card";
-import { Search, Rocket, LineChart, TrendingUp } from "lucide-react";
+import { UserPlus, Code2, FlaskConical, Rocket } from "lucide-react";
 import { motion } from "framer-motion";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 
 const steps = [
   {
     number: "01",
-    icon: Search,
-    title: "Strategy & Audit",
-    description: "We analyze your data, creatives, funnels, competition & customer behavior.",
-    gradient: "from-primary to-blue-500"
+    icon: UserPlus,
+    title: "Sign Up",
+    description: "Create your Zwitch account in minutes with simple KYC verification.",
   },
   {
     number: "02",
-    icon: Rocket,
-    title: "Execution",
-    description: "Creative + media buying + CRO executed in a unified engine.",
-    gradient: "from-blue-500 to-purple-500"
+    icon: Code2,
+    title: "Integrate",
+    description: "Use our APIs or plugins to add payments to your website or app.",
   },
   {
     number: "03",
-    icon: LineChart,
-    title: "Optimization",
-    description: "Daily iteration, ad refresh cycles, testing frameworks.",
-    gradient: "from-purple-500 to-pink-500"
+    icon: FlaskConical,
+    title: "Test",
+    description: "Verify your integration in our sandbox environment before going live.",
   },
   {
     number: "04",
-    icon: TrendingUp,
-    title: "Scaling",
-    description: "Expand into new channels & audiences while maintaining ROAS.",
-    gradient: "from-pink-500 to-orange-500"
+    icon: Rocket,
+    title: "Go Live",
+    description: "Start accepting payments at just 1.5% and grow your business.",
   }
 ];
 
@@ -48,11 +44,11 @@ const Process = () => {
           transition={{ duration: 0.6 }}
         >
           <h2 className="font-display font-bold text-4xl md:text-5xl lg:text-6xl mb-6">
-            Predictable Growth Through a{" "}
-            <span className="gradient-text">Proven Framework</span>
+            Integrate Payments{" "}
+            <span className="gradient-text">in Hours</span>
           </h2>
           <p className="text-lg text-muted-foreground">
-            Our 4-step execution framework delivers consistent results for every client.
+            Our simple 4-step process gets you accepting payments faster than ever.
           </p>
         </motion.div>
         
@@ -69,21 +65,21 @@ const Process = () => {
                   transition={{ duration: 0.6, delay: 0.2 + index * 0.1 }}
                 >
                   <Card className="group relative bg-card border-border p-8 hover:border-primary/50 transition-all duration-300 h-full">
-                  {/* Number badge */}
-                  <div className={`absolute top-8 right-8 w-12 h-12 rounded-full bg-gradient-to-br ${step.gradient} flex items-center justify-center`}>
-                    <span className="font-display font-bold text-background">{step.number}</span>
-                  </div>
-                  
-                  {/* Icon */}
-                  <div className="w-16 h-16 rounded-xl bg-secondary flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                    <Icon className="w-8 h-8 text-primary" />
-                  </div>
-                  
-                  {/* Content */}
-                  <h3 className="font-display font-bold text-2xl mb-3">{step.title}</h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {step.description}
-                  </p>
+                    {/* Number badge */}
+                    <div className="absolute top-8 right-8 w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center">
+                      <span className="font-display font-bold text-primary">{step.number}</span>
+                    </div>
+                    
+                    {/* Icon */}
+                    <div className="w-16 h-16 rounded-xl bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
+                      <Icon className="w-8 h-8 text-primary" />
+                    </div>
+                    
+                    {/* Content */}
+                    <h3 className="font-display font-bold text-2xl mb-3">{step.title}</h3>
+                    <p className="text-muted-foreground leading-relaxed">
+                      {step.description}
+                    </p>
                   </Card>
                 </motion.div>
               );
