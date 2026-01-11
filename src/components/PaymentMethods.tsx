@@ -40,26 +40,60 @@ const PaymentMethods = () => {
   const { ref, isVisible } = useScrollReveal();
   
   return (
-    <section id="payment-methods" className="py-24 md:py-32 relative">
+    <section id="payment-methods" className="py-12 md:py-24 relative">
       <div className="container mx-auto px-6" ref={ref}>
         {/* Section Header */}
         <motion.div 
-          className="max-w-3xl mx-auto text-center mb-16"
+          className="max-w-3xl mx-auto text-center mb-8 md:mb-16"
           initial={{ opacity: 0, y: 30 }}
           animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="font-display font-bold text-4xl md:text-5xl lg:text-6xl mb-6">
+          <h2 className="font-display font-bold text-[24px] md:text-5xl lg:text-6xl mb-3 md:mb-6">
             150+ Ways to{" "}
             <span className="gradient-text">Get Paid</span>
           </h2>
-          <p className="text-lg text-muted-foreground">
+          <p className="text-sm md:text-lg text-muted-foreground">
             Every payment method your customers prefer — optimized for maximum conversions.
           </p>
         </motion.div>
         
-        {/* Payment Methods Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 max-w-6xl mx-auto">
+        {/* Mobile: horizontal swipe */}
+        <div className="md:hidden -mx-6 px-6 overflow-x-auto snap-x snap-mandatory">
+          <div className="flex gap-3 pb-2">
+            {paymentMethods.map((method, index) => {
+              const Icon = method.icon;
+              return (
+                <motion.div
+                  key={method.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                  transition={{ duration: 0.4, delay: 0.05 + index * 0.05 }}
+                  className="snap-start"
+                >
+                  <Card className="bg-card border-border w-[220px] p-4">
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+                        <Icon className="w-5 h-5 text-primary" />
+                      </div>
+                      <h3 className="font-display font-bold text-base">{method.title}</h3>
+                    </div>
+                    <p className="text-sm text-muted-foreground mb-3">
+                      {method.title} — {method.benefit.replace("↑ ", "")}
+                    </p>
+                    <div className="inline-flex items-center gap-1 text-xs font-semibold text-primary bg-primary/10 px-2 py-1 rounded-full">
+                      <TrendingUp className="w-3 h-3" />
+                      {method.benefit}
+                    </div>
+                  </Card>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Desktop: grid */}
+        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 max-w-6xl mx-auto">
           {paymentMethods.map((method, index) => {
             const Icon = method.icon;
             return (
@@ -79,7 +113,6 @@ const PaymentMethods = () => {
                     {method.description}
                   </p>
                   
-                  {/* Conversion Impact Label */}
                   <div className="inline-flex items-center gap-1 text-xs font-semibold text-primary bg-primary/10 px-2 py-1 rounded-full">
                     <TrendingUp className="w-3 h-3" />
                     {method.benefit}

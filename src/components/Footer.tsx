@@ -1,4 +1,5 @@
 import { Linkedin, Twitter, Github } from "lucide-react";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 const Footer = () => {
   return (
@@ -20,10 +21,16 @@ const Footer = () => {
             <p className="text-xs text-muted-foreground">
               RBI Licensed Payment Aggregator
             </p>
+            <p className="text-xs text-muted-foreground mt-2">
+              Support:{" "}
+              <a href="mailto:support@zwitch.io" className="hover:underline">
+                support@zwitch.io
+              </a>
+            </p>
           </div>
           
-          {/* Products */}
-          <div>
+          {/* Desktop link columns */}
+          <div className="hidden md:block">
             <h4 className="font-display font-semibold mb-4">Products</h4>
             <ul className="space-y-2">
               <li><a href="https://www.zwitch.io/payment-gateway" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Payment Gateway</a></li>
@@ -33,8 +40,7 @@ const Footer = () => {
             </ul>
           </div>
           
-          {/* Resources */}
-          <div>
+          <div className="hidden md:block">
             <h4 className="font-display font-semibold mb-4">Resources</h4>
             <ul className="space-y-2">
               <li><a href="https://developers.zwitch.io/" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Documentation</a></li>
@@ -43,6 +49,34 @@ const Footer = () => {
               <li><a href="https://zwitch.open.money/login" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Login</a></li>
             </ul>
           </div>
+        </div>
+
+        {/* Mobile: accordions for link groups */}
+        <div className="md:hidden mb-8">
+          <Accordion type="multiple" className="w-full">
+            <AccordionItem value="products" className="border-border">
+              <AccordionTrigger className="text-left font-display font-semibold">Products</AccordionTrigger>
+              <AccordionContent>
+                <ul className="space-y-2">
+                  <li><a href="https://www.zwitch.io/payment-gateway" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Payment Gateway</a></li>
+                  <li><a href="https://www.zwitch.io/payouts" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Payouts</a></li>
+                  <li><a href="https://www.zwitch.io/zwitch-bill-connect" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Bill Connect</a></li>
+                  <li><a href="https://www.zwitch.io/verification-suite" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-foreground transition-colors">API Marketplace</a></li>
+                </ul>
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="resources" className="border-border">
+              <AccordionTrigger className="text-left font-display font-semibold">Resources</AccordionTrigger>
+              <AccordionContent>
+                <ul className="space-y-2">
+                  <li><a href="https://developers.zwitch.io/" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Documentation</a></li>
+                  <li><a href="https://www.zwitch.io/blog" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Blog</a></li>
+                  <li><a href="https://zwitch.open.money/register" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Sign Up</a></li>
+                  <li><a href="https://zwitch.open.money/login" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Login</a></li>
+                </ul>
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
         </div>
         
         {/* Social Icons */}

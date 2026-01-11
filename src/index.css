@@ -73,6 +73,20 @@
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
+
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
   
   .hover-scale {
     @apply transition-transform duration-300 hover:scale-105;
@@ -88,5 +102,64 @@
 
   .orange-glow {
     background: var(--gradient-orange-glow);
+  }
+}
+
+/* PRD: Accessibility & Performance - Mobile optimizations */
+@layer base {
+  /* Reduce heavy glow effects on mobile for performance + clarity */
+  @media (max-width: 767px) {
+    .orange-glow {
+      opacity: 0.3;
+    }
+    
+    .hover-glow:hover {
+      box-shadow: 0 0 20px hsl(24 100% 50% / 0.25);
+    }
+  }
+  
+  /* PRD: Increase line-height for headline readability */
+  h1 {
+    line-height: 1.1;
+  }
+  
+  @media (max-width: 767px) {
+    h1 {
+      line-height: 1.2;
+    }
+  }
+  
+  /* PRD: Headline readable at 320px width */
+  @media (max-width: 320px) {
+    h1 {
+      font-size: 24px;
+      line-height: 1.25;
+    }
+  }
+}
+
+/* Smooth animations for form collapse/expand */
+@layer utilities {
+  .animate-in {
+    animation: animate-in 0.3s ease-out;
+  }
+  
+  @keyframes animate-in {
+    from {
+      opacity: 0;
+      transform: translateY(-8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .slide-in-from-top-1 {
+    --tw-enter-translate-y: -4px;
+  }
+  
+  .slide-in-from-top-2 {
+    --tw-enter-translate-y: -8px;
   }
 }

@@ -1,16 +1,15 @@
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { ArrowRight, Shield, Clock, CheckCircle } from "lucide-react";
+import { CheckCircle } from "lucide-react";
 import { motion } from "framer-motion";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
+import { LeadForm } from "@/components/LeadForm";
 
 const ContactForm = () => {
   const { ref, isVisible } = useScrollReveal();
   
   return (
-    <section id="contact" className="py-24 md:py-32 relative overflow-hidden">
+    // Desktop form is now embedded in Hero. Keep this section for mobile only to avoid duplication.
+    <section id="contact" className="py-12 md:hidden relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-secondary/20 to-background -z-10" />
       
@@ -23,10 +22,10 @@ const ContactForm = () => {
             animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="font-display font-bold text-4xl md:text-5xl lg:text-6xl mb-6">
-              Get <span className="gradient-text">1.5% Pricing</span> Today
+            <h2 className="font-display font-bold text-[24px] md:text-5xl lg:text-6xl mb-3 md:mb-6">
+              Get <span className="gradient-text">1.5%</span> Pricing Today
             </h2>
-            <p className="text-lg text-muted-foreground">
+            <p className="text-sm md:text-lg text-muted-foreground">
               Join 42 lakh+ businesses using Zwitch for payments.
             </p>
           </motion.div>
@@ -37,98 +36,16 @@ const ContactForm = () => {
             animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <Card className="bg-card border-border p-8 md:p-10">
-              {/* Trust indicators at top */}
-              <div className="flex flex-wrap items-center justify-center gap-4 mb-8 pb-6 border-b border-border">
-                <span className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <Shield className="w-4 h-4 text-primary" />
-                  RBI Licensed
-                </span>
-                <span className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <Clock className="w-4 h-4 text-primary" />
-                  Go live in hours
-                </span>
-                <span className="flex items-center gap-2 text-sm text-muted-foreground">
+            <Card className="bg-card border-border p-6 md:p-10">
+              {/* Mobile: low-friction form */}
+              <div>
+                <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground mb-6">
                   <CheckCircle className="w-4 h-4 text-primary" />
-                  No setup fees
-                </span>
+                  <span>Fast onboarding • No setup fees</span>
+                </div>
+                
+                <LeadForm variant="section" idPrefix="mobileLead" />
               </div>
-              
-              <form className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <label htmlFor="businessName" className="block text-sm font-medium mb-2">
-                      Business Name *
-                    </label>
-                    <Input 
-                      id="businessName"
-                      placeholder="Your Company Name" 
-                      className="bg-secondary border-border"
-                      required
-                    />
-                  </div>
-                  
-                  <div>
-                    <label htmlFor="email" className="block text-sm font-medium mb-2">
-                      Work Email *
-                    </label>
-                    <Input 
-                      id="email"
-                      type="email"
-                      placeholder="you@company.com" 
-                      className="bg-secondary border-border"
-                      required
-                    />
-                  </div>
-                </div>
-                
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <label htmlFor="phone" className="block text-sm font-medium mb-2">
-                      Phone Number *
-                    </label>
-                    <Input 
-                      id="phone"
-                      type="tel"
-                      placeholder="+91 98765 43210" 
-                      className="bg-secondary border-border"
-                      required
-                    />
-                  </div>
-                  
-                  <div>
-                    <label htmlFor="volume" className="block text-sm font-medium mb-2">
-                      Expected Monthly Volume *
-                    </label>
-                    <Select>
-                      <SelectTrigger className="bg-secondary border-border">
-                        <SelectValue placeholder="Select volume" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="below-1l">Below ₹1 Lakh</SelectItem>
-                        <SelectItem value="1l-10l">₹1 Lakh - ₹10 Lakh</SelectItem>
-                        <SelectItem value="10l-50l">₹10 Lakh - ₹50 Lakh</SelectItem>
-                        <SelectItem value="50l-1cr">₹50 Lakh - ₹1 Crore</SelectItem>
-                        <SelectItem value="above-1cr">Above ₹1 Crore</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                </div>
-                
-                <Button 
-                  type="submit" 
-                  size="lg" 
-                  className="w-full bg-primary hover:bg-primary/90 text-primary-foreground hover-glow py-6 text-lg"
-                >
-                  Get Started with 1.5% Rate
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-                
-                {/* Reassurance text */}
-                <p className="text-xs text-muted-foreground text-center">
-                  No spam. No sales pressure. Our onboarding team will reach out within 24 hours.
-                </p>
-              </form>
             </Card>
           </motion.div>
           

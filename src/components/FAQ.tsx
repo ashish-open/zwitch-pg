@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
+import { isMobileViewport, trackEvent } from "@/lib/analytics";
+import { useEffect, useRef } from "react";
 import {
   Accordion,
   AccordionContent,
@@ -36,9 +38,14 @@ const faqs = [
 
 const FAQ = () => {
   const { ref, isVisible } = useScrollReveal();
+  const prevOpen = useRef<string[]>([]);
+
+  useEffect(() => {
+    prevOpen.current = ["item-0", "item-1", "item-2"];
+  }, []);
   
   return (
-    <section id="faq" className="py-24 md:py-32">
+    <section id="faq" className="py-12 md:py-24">
       <div className="container mx-auto px-6" ref={ref}>
         <motion.div 
           className="max-w-3xl mx-auto"
@@ -48,17 +55,32 @@ const FAQ = () => {
         >
           {/* Section Header */}
           <div className="text-center mb-12">
-            <h2 className="font-display font-bold text-4xl md:text-5xl lg:text-6xl mb-6">
+            <h2 className="font-display font-bold text-[24px] md:text-5xl lg:text-6xl mb-3 md:mb-6">
               Common{" "}
               <span className="gradient-text">Questions</span>
             </h2>
-            <p className="text-lg text-muted-foreground">
+            <p className="text-sm md:text-lg text-muted-foreground">
               Everything you need to know before getting started.
             </p>
           </div>
           
           {/* FAQ Accordion */}
-          <Accordion type="single" collapsible className="w-full">
+          <Accordion
+            type="multiple"
+            defaultValue={["item-0", "item-1", "item-2"]}
+            onValueChange={(values) => {
+              if (!isMobileViewport()) return;
+              const next = Array.isArray(values) ? values : [];
+              const newlyOpened = next.filter((v) => !prevOpen.current.includes(v));
+              for (const v of newlyOpened) {
+                const index = Number(v.replace("item-", ""));
+                const q = faqs[index]?.question ?? "";
+                trackEvent("faq_expand", { question: q, index });
+              }
+              prevOpen.current = next;
+            }}
+            className="w-full"
+          >
             {faqs.map((faq, index) => (
               <motion.div
                 key={index}
