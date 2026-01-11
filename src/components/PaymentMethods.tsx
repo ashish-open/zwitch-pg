@@ -1,33 +1,38 @@
 import { Card } from "@/components/ui/card";
-import { CreditCard, Building2, Smartphone, Wallet, Calculator } from "lucide-react";
+import { CreditCard, Building2, Smartphone, Wallet, Calculator, TrendingUp } from "lucide-react";
 import { motion } from "framer-motion";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 
 const paymentMethods = [
   {
+    icon: Smartphone,
+    title: "UPI",
+    description: "Capture India's highest-converting payment method with support for GPay, PhonePe, CRED & more.",
+    benefit: "↑ Highest success rate",
+  },
+  {
     icon: CreditCard,
     title: "Cards",
-    description: "Accept payments via credit and debit cards, with EMI options for higher flexibility.",
+    description: "Accept domestic & international cards with EMI options to increase average order value.",
+    benefit: "↑ Higher AOV",
   },
   {
     icon: Building2,
     title: "Net Banking",
-    description: "Enable secure transactions through all major banks across India.",
-  },
-  {
-    icon: Smartphone,
-    title: "UPI",
-    description: "Accept payments from Google Pay, PhonePe, CRED, Paytm, and more.",
+    description: "Enable secure transactions through all major banks across India with instant confirmation.",
+    benefit: "↑ Faster checkout",
   },
   {
     icon: Wallet,
     title: "Wallets",
-    description: "Integrate popular wallets like Amazon Pay, Mobikwik, and more.",
+    description: "Integrate Amazon Pay, Mobikwik, and more for customers who prefer wallet payments.",
+    benefit: "↑ More completed payments",
   },
   {
     icon: Calculator,
     title: "EMI Options",
-    description: "Offer credit and debit card EMIs to facilitate larger purchases and improve conversions.",
+    description: "Offer credit and debit card EMIs to facilitate larger purchases and boost conversions.",
+    benefit: "↑ Larger transactions",
   },
 ];
 
@@ -45,11 +50,11 @@ const PaymentMethods = () => {
           transition={{ duration: 0.6 }}
         >
           <h2 className="font-display font-bold text-4xl md:text-5xl lg:text-6xl mb-6">
-            Supported{" "}
-            <span className="gradient-text">Payment Methods</span>
+            150+ Ways to{" "}
+            <span className="gradient-text">Get Paid</span>
           </h2>
           <p className="text-lg text-muted-foreground">
-            Zwitch offers a comprehensive range of payment methods, ensuring your customers can choose their preferred option.
+            Every payment method your customers prefer — optimized for maximum conversions.
           </p>
         </motion.div>
         
@@ -70,9 +75,15 @@ const PaymentMethods = () => {
                   </div>
                   
                   <h3 className="font-display font-bold text-lg mb-2">{method.title}</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">
+                  <p className="text-muted-foreground text-sm leading-relaxed mb-3">
                     {method.description}
                   </p>
+                  
+                  {/* Conversion Impact Label */}
+                  <div className="inline-flex items-center gap-1 text-xs font-semibold text-primary bg-primary/10 px-2 py-1 rounded-full">
+                    <TrendingUp className="w-3 h-3" />
+                    {method.benefit}
+                  </div>
                 </Card>
               </motion.div>
             );

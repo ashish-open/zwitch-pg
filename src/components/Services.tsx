@@ -1,38 +1,45 @@
 import { Card } from "@/components/ui/card";
-import { Code2, MonitorSmartphone, Puzzle, TrendingUp, AlertCircle, RefreshCw } from "lucide-react";
+import { TrendingUp, MonitorSmartphone, Code2, Puzzle, AlertCircle, RefreshCw } from "lucide-react";
 import { motion } from "framer-motion";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 
+// Reordered by buyer psychology - business outcomes first
 const features = [
   {
-    icon: Code2,
-    title: "Developer-Friendly APIs",
-    description: "Integrate payments with just a few lines of code using our RESTful APIs and comprehensive SDKs.",
+    icon: TrendingUp,
+    title: "High Success Rates",
+    description: "Built to maximize transaction success rates with intelligent routing and fallback options.",
+    whyItMatters: "More completed payments = more revenue",
   },
   {
     icon: MonitorSmartphone,
     title: "In-Page Payment Experience",
     description: "Keep users on your site without redirects for seamless payments and higher conversions.",
+    whyItMatters: "Reduce drop-offs at checkout",
+  },
+  {
+    icon: Code2,
+    title: "Developer-Friendly APIs",
+    description: "Integrate payments with just a few lines of code using our RESTful APIs and comprehensive SDKs.",
+    whyItMatters: "Go live in hours, not weeks",
   },
   {
     icon: Puzzle,
     title: "Platform Plugins",
     description: "Ready-to-use plugins for Shopify, WooCommerce, WordPress, and Magento for quick setup.",
-  },
-  {
-    icon: TrendingUp,
-    title: "High Success Rates",
-    description: "Built to maximize transaction success rates with intelligent routing and fallback options.",
+    whyItMatters: "Zero coding required",
   },
   {
     icon: AlertCircle,
     title: "Real-Time Failure Insights",
     description: "Access detailed insights on payment failures to refine your checkout process.",
+    whyItMatters: "Fix issues before they cost you",
   },
   {
     icon: RefreshCw,
     title: "Instant Refunds",
     description: "Process refunds quickly and efficiently with automated workflows.",
+    whyItMatters: "Keep customers happy",
   }
 ];
 
@@ -50,11 +57,11 @@ const Services = () => {
           transition={{ duration: 0.6 }}
         >
           <h2 className="font-display font-bold text-4xl md:text-5xl lg:text-6xl mb-6">
-            Why Use Zwitch{" "}
-            <span className="gradient-text">Payment Gateway</span>
+            Built for{" "}
+            <span className="gradient-text">Scale & Speed</span>
           </h2>
           <p className="text-lg text-muted-foreground">
-            Everything you need to accept payments seamlessly—from integration to reconciliation.
+            Everything you need to accept payments seamlessly — from integration to reconciliation.
           </p>
         </motion.div>
         
@@ -74,9 +81,14 @@ const Services = () => {
                     <Icon className="w-7 h-7 text-primary" />
                   </div>
                   
-                  <h3 className="font-display font-bold text-xl mb-3">{feature.title}</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">
+                  <h3 className="font-display font-bold text-xl mb-2">{feature.title}</h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed mb-3">
                     {feature.description}
+                  </p>
+                  
+                  {/* Why it matters */}
+                  <p className="text-xs font-medium text-primary">
+                    → {feature.whyItMatters}
                   </p>
                 </Card>
               </motion.div>
