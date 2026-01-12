@@ -3,7 +3,7 @@ import Hero from "@/components/Hero";
 import TrustBadges from "@/components/TrustBadges";
 import Footer from "@/components/Footer";
 import StickyCTA from "@/components/StickyCTA";
-import { isMobileViewport, trackEvent } from "@/lib/analytics";
+import { isMobileViewport, trackEvent, initAnalytics } from "@/lib/analytics";
 import { lazy, Suspense, useEffect } from "react";
 
 // Below-fold: lazy-load to reduce initial JS on mobile
@@ -16,6 +16,11 @@ const FAQ = lazy(() => import("@/components/FAQ"));
 const ContactForm = lazy(() => import("@/components/ContactForm"));
 
 const Index = () => {
+  // Initialize analytics & capture UTM params on page load
+  useEffect(() => {
+    initAnalytics();
+  }, []);
+
   useEffect(() => {
     if (!isMobileViewport()) return;
 

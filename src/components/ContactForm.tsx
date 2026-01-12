@@ -3,6 +3,7 @@ import { CheckCircle } from "lucide-react";
 import { motion } from "framer-motion";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 import { LeadForm } from "@/components/LeadForm";
+import { trackRegisterClick, buildRegisterURL } from "@/lib/analytics";
 
 const ContactForm = () => {
   const { ref, isVisible } = useScrollReveal();
@@ -59,9 +60,12 @@ const ContactForm = () => {
             <p className="text-sm text-muted-foreground">
               Processing ₹1 Cr+ monthly?{" "}
               <a 
-                href="https://zwitch.open.money/register" 
-                target="_blank" 
-                rel="noopener noreferrer"
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  trackRegisterClick("contact_enterprise", "Talk to our enterprise team");
+                  window.open(buildRegisterURL({ source: "contact_enterprise", content: "enterprise_cta" }), "_blank", "noopener,noreferrer");
+                }}
                 className="text-primary hover:underline font-medium"
               >
                 Talk to our enterprise team →

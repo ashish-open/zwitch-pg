@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { trackEvent } from "@/lib/analytics";
+import { trackRegisterClick, buildRegisterURL } from "@/lib/analytics";
 import { ArrowRight, Check, Calculator, ChevronDown } from "lucide-react";
 import { motion } from "framer-motion";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
@@ -127,11 +127,17 @@ const PricingOffer = () => {
             </Card>
 
             {/* CTA */}
-            <a href="https://zwitch.open.money/register" target="_blank" rel="noopener noreferrer">
+            <a 
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                trackRegisterClick("pricing_mobile", "Lock 1.5% Pricing");
+                window.open(buildRegisterURL({ source: "pricing_mobile", content: "pricing_cta" }), "_blank", "noopener,noreferrer");
+              }}
+            >
               <Button
                 size="lg"
                 className="bg-primary hover:bg-primary/90 text-primary-foreground hover-glow w-full h-12"
-                onClick={() => trackEvent("pricing_cta_click", { placement: "pricing_section" })}
               >
                 Lock 1.5% Pricing
                 <ArrowRight className="ml-2 h-5 w-5" />
@@ -222,11 +228,17 @@ const PricingOffer = () => {
                     </p>
                   </div>
                   
-                  <a href="https://zwitch.open.money/register" target="_blank" rel="noopener noreferrer">
+                  <a 
+                    href="#"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      trackRegisterClick("pricing_desktop", "Claim 1.5% Rate Now");
+                      window.open(buildRegisterURL({ source: "pricing_desktop", content: "pricing_cta" }), "_blank", "noopener,noreferrer");
+                    }}
+                  >
                     <Button
                       size="lg"
                       className="bg-primary hover:bg-primary/90 text-primary-foreground hover-glow w-full"
-                      onClick={() => trackEvent("pricing_cta_click", { placement: "pricing_section" })}
                     >
                       Claim 1.5% Rate Now
                       <ArrowRight className="ml-2 h-5 w-5" />

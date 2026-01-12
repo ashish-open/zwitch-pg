@@ -1,5 +1,6 @@
 import { Linkedin, Twitter, Github } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { trackRegisterClick, buildRegisterURL } from "@/lib/analytics";
 
 const Footer = () => {
   return (
@@ -45,7 +46,7 @@ const Footer = () => {
             <ul className="space-y-2">
               <li><a href="https://developers.zwitch.io/" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Documentation</a></li>
               <li><a href="https://www.zwitch.io/blog" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Blog</a></li>
-              <li><a href="https://zwitch.open.money/register" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Sign Up</a></li>
+              <li><a href="#" onClick={(e) => { e.preventDefault(); trackRegisterClick("footer_desktop", "Sign Up"); window.open(buildRegisterURL({ source: "footer_desktop" }), "_blank", "noopener,noreferrer"); }} className="text-sm text-muted-foreground hover:text-foreground transition-colors">Sign Up</a></li>
               <li><a href="https://zwitch.open.money/login" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Login</a></li>
             </ul>
           </div>
@@ -71,7 +72,7 @@ const Footer = () => {
                 <ul className="space-y-2">
                   <li><a href="https://developers.zwitch.io/" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Documentation</a></li>
                   <li><a href="https://www.zwitch.io/blog" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Blog</a></li>
-                  <li><a href="https://zwitch.open.money/register" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Sign Up</a></li>
+                  <li><a href="#" onClick={(e) => { e.preventDefault(); trackRegisterClick("footer_mobile", "Sign Up"); window.open(buildRegisterURL({ source: "footer_mobile" }), "_blank", "noopener,noreferrer"); }} className="text-sm text-muted-foreground hover:text-foreground transition-colors">Sign Up</a></li>
                   <li><a href="https://zwitch.open.money/login" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Login</a></li>
                 </ul>
               </AccordionContent>

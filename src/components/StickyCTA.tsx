@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { trackEvent, isMobileViewport } from "@/lib/analytics";
+import { trackRegisterClick, buildRegisterURL, isMobileViewport } from "@/lib/analytics";
 
 const StickyCTA = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -29,8 +29,11 @@ const StickyCTA = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleCtaClick = () => {
-    trackEvent("hero_cta_click", { placement: "sticky_mobile" });
+  const handleCtaClick = (e: React.MouseEvent<HTMLAnchorElement>, placement: string) => {
+    e.preventDefault();
+    trackRegisterClick(placement, "Get Flat 1.5% Pricing");
+    const registerUrl = buildRegisterURL({ source: placement, content: "sticky_cta" });
+    window.open(registerUrl, "_blank", "noopener,noreferrer");
   };
 
   return (
@@ -47,15 +50,13 @@ const StickyCTA = () => {
             {/* Mobile: Full-width CTA per PRD */}
             <div className="md:hidden">
               <a
-                href="https://zwitch.open.money/register"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="#"
                 className="block"
+                onClick={(e) => handleCtaClick(e, "sticky_mobile")}
               >
                 <Button
                   size="lg"
                   className="w-full bg-primary hover:bg-primary/90 text-primary-foreground h-12 text-base font-semibold"
-                  onClick={handleCtaClick}
                 >
                   Get Flat 1.5% Pricing
                   <ArrowRight className="ml-2 h-5 w-5" />
@@ -75,14 +76,12 @@ const StickyCTA = () => {
               </div>
 
               <a
-                href="https://zwitch.open.money/register"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="#"
+                onClick={(e) => handleCtaClick(e, "sticky_desktop")}
               >
                 <Button
                   size="lg"
                   className="bg-primary hover:bg-primary/90 text-primary-foreground hover-glow whitespace-nowrap"
-                  onClick={handleCtaClick}
                 >
                   Get Flat 1.5% Pricing
                   <ArrowRight className="ml-2 h-5 w-5" />

@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetClose, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
-import { trackEvent } from "@/lib/analytics";
+import { trackRegisterClick, buildRegisterURL } from "@/lib/analytics";
 import { Menu } from "lucide-react";
 import { useEffect, useState } from "react";
 
@@ -30,6 +30,16 @@ const Header = () => {
         behavior: "smooth"
       });
     }
+  };
+
+  const handleRegisterClick = (e: React.MouseEvent<HTMLAnchorElement>, placement: string) => {
+    e.preventDefault();
+    trackRegisterClick(placement, "Get 1.5% Pricing");
+    const registerUrl = buildRegisterURL({ 
+      source: placement,
+      content: "header_cta"
+    });
+    window.open(registerUrl, "_blank", "noopener,noreferrer");
   };
 
   return (
@@ -118,37 +128,6 @@ const Header = () => {
             </a>
           </div>
           
-          <nav className="hidden md:flex items-center space-x-8">
-            <a 
-              href="#features" 
-              onClick={(e) => smoothScroll(e, "#features")}
-              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-            >
-              Why Zwitch
-            </a>
-            <a 
-              href="#payment-methods" 
-              onClick={(e) => smoothScroll(e, "#payment-methods")}
-              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-            >
-              Payment Methods
-            </a>
-            <a 
-              href="#pricing" 
-              onClick={(e) => smoothScroll(e, "#pricing")}
-              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-            >
-              Pricing
-            </a>
-            <a 
-              href="https://developers.zwitch.io/" 
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-            >
-              Developers
-            </a>
-          </nav>
           
           <div className="flex items-center space-x-4">
             <a 
@@ -165,21 +144,27 @@ const Header = () => {
               </Button>
             </a>
             {(showMobileCta || typeof window === "undefined") && (
-              <a href="https://zwitch.open.money/register" target="_blank" rel="noopener noreferrer" className="md:hidden">
+              <a 
+                href="#" 
+                className="md:hidden"
+                onClick={(e) => handleRegisterClick(e, "header_mobile")}
+              >
                 <Button
                   className="bg-primary hover:bg-primary/90 text-primary-foreground h-12 px-4"
-                  onClick={() => trackEvent("header_cta_click", { placement: "header_mobile" })}
                 >
                   Get 1.5% Pricing
                 </Button>
               </a>
             )}
 
-            <a href="https://zwitch.open.money/register" target="_blank" rel="noopener noreferrer" className="hidden md:inline-flex">
+            <a 
+              href="#" 
+              className="hidden md:inline-flex"
+              onClick={(e) => handleRegisterClick(e, "header_desktop")}
+            >
               <Button
                 size="sm"
                 className="bg-primary hover:bg-primary/90 text-primary-foreground"
-                onClick={() => trackEvent("header_cta_click", { placement: "header_desktop" })}
               >
                 Get 1.5% Pricing
               </Button>

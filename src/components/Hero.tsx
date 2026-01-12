@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { trackEvent } from "@/lib/analytics";
+import { trackEvent, trackRegisterClick, buildRegisterURL } from "@/lib/analytics";
 import { ArrowRight, Building2, Clock, CreditCard, Flame, Shield, Smartphone, Zap, FileCode2, ChevronDown } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { LeadForm } from "@/components/LeadForm";
@@ -44,8 +44,31 @@ const Hero = () => {
     trackEvent("form_open", { placement: "hero_mobile" });
   };
 
-  const handleDocsClick = () => {
-    trackEvent("secondary_cta_click", { cta: "api_docs", placement: "hero" });
+  const handleDocsClick = (placement: string) => {
+    trackEvent("docs_click", { 
+      cta: "api_docs", 
+      placement,
+      destination: "https://developers.zwitch.io/"
+    });
+  };
+
+  // Handle CTA click - navigate to register with UTM tracking
+  const handleRegisterClick = (e: React.MouseEvent<HTMLAnchorElement>, placement: string) => {
+    e.preventDefault();
+    trackRegisterClick(placement, "Get Flat 1.5% Pricing");
+    const registerUrl = buildRegisterURL({ 
+      source: placement,
+      content: "hero_cta"
+    });
+    window.open(registerUrl, "_blank", "noopener,noreferrer");
+  };
+
+  // Handle form submission success - redirect to register
+  const handleFormSuccess = () => {
+    trackEvent("form_to_register_redirect", { placement: "hero" });
+    // Optionally redirect to register after form submission
+    // const registerUrl = buildRegisterURL({ source: "hero_form_success" });
+    // window.location.href = registerUrl;
   };
 
   return (
@@ -124,21 +147,31 @@ const Hero = () => {
               <LeadForm
                 variant="hero"
                 idPrefix="heroLeadMobile"
+                onSubmitSuccess={handleFormSuccess}
               />
             </div>
           )}
 
-          {/* Secondary CTA */}
+          {/* Secondary CTA - Link to register */}
           {!mobileFormOpen && (
-            <a
-              href="https://developers.zwitch.io/"
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={handleDocsClick}
-              className="block text-center text-sm text-muted-foreground hover:text-foreground mt-4 py-2 transition-colors"
-            >
-              View API Docs <span className="text-primary/70">(5-min setup)</span>
-            </a>
+            <div className="flex flex-col items-center gap-3 mt-4">
+              <a
+                href="#"
+                onClick={(e) => handleRegisterClick(e, "hero_mobile_secondary")}
+                className="text-sm text-muted-foreground hover:text-foreground py-2 transition-colors"
+              >
+                Already know us? <span className="text-primary underline underline-offset-2">Sign up directly →</span>
+              </a>
+              <a
+                href="https://developers.zwitch.io/"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => handleDocsClick("hero_mobile")}
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+              >
+                View API Docs <span className="text-primary/70">(5-min setup)</span>
+              </a>
+            </div>
           )}
 
           {/* 6. Stats - 2×2 grid on mobile per PRD */}
@@ -195,7 +228,7 @@ const Hero = () => {
                     size="lg"
                     className="bg-primary hover:bg-primary/90 text-primary-foreground hover-glow h-12 px-6 text-base font-semibold"
                     onClick={() => {
-                      trackEvent("hero_cta_click", { placement: "hero_desktop" });
+                      trackEvent("hero_cta_click", { placement: "hero_desktop", action: "focus_form" });
                       if (firstFieldId.current) {
                         const el = document.getElementById(firstFieldId.current) as HTMLInputElement | null;
                         el?.focus();
@@ -211,7 +244,7 @@ const Hero = () => {
                     href="https://developers.zwitch.io/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    onClick={handleDocsClick}
+                    onClick={() => handleDocsClick("hero_desktop")}
                     className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1.5"
                   >
                     <FileCode2 className="w-4 h-4" />
@@ -219,23 +252,14 @@ const Hero = () => {
                   </a>
                 </div>
 
-                {/* Trust Strip - Desktop */}
-                <div className="flex items-center gap-5 text-sm text-muted-foreground mb-10">
-                  <span className="flex items-center gap-1.5">
-                    <Shield className="w-4 h-4 text-primary" />
-                    RBI-licensed Payment Aggregator
-                  </span>
-                  <span className="text-border">•</span>
-                  <span className="flex items-center gap-1.5">
-                    <Zap className="w-4 h-4 text-primary" />
-                    No setup fees
-                  </span>
-                  <span className="text-border">•</span>
-                  <span className="flex items-center gap-1.5">
-                    <FileCode2 className="w-4 h-4 text-primary" />
-                    Free sandbox & test mode
-                  </span>
-                </div>
+                {/* Secondary link - Direct register */}
+                <a
+                  href="#"
+                  onClick={(e) => handleRegisterClick(e, "hero_desktop_direct")}
+                  className="inline-block text-sm text-muted-foreground hover:text-foreground transition-colors mb-8"
+                >
+                  Already know us? <span className="text-primary underline underline-offset-2">Sign up directly →</span>
+                </a>
 
                 {/* Stats Row */}
                 <div className="pt-8 border-t border-border/40 max-w-2xl">
@@ -269,6 +293,7 @@ const Hero = () => {
                     onFirstFieldId={(id) => {
                       firstFieldId.current = id;
                     }}
+                    onSubmitSuccess={handleFormSuccess}
                   />
 
                   {/* Trust badges under form */}
@@ -280,7 +305,7 @@ const Hero = () => {
                     <span className="text-border/50">•</span>
                     <span className="flex items-center gap-1">
                       <Zap className="w-3.5 h-3.5 text-primary/70" />
-                      No fees
+                      No setup fee
                     </span>
                     <span className="text-border/50">•</span>
                     <span className="flex items-center gap-1">
