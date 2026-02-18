@@ -1,0 +1,14 @@
+{
+  "buildCommand": "npm run build",
+  "installCommand": "npm install",
+  "outputDirectory": "dist",
+  "env": {
+    "VITE_SOME_VAR": "@vite_some_var"
+  },
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
