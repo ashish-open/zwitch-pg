@@ -1,73 +1,84 @@
-# Welcome to your Lovable project
+# Zwitch Payment Gateway — Landing Page
 
-## Project info
+A modern, high-performance landing page for the **Zwitch Payment Gateway**, built with React, TypeScript, and Tailwind CSS.
 
-**URL**: https://lovable.dev/projects/5538cb0e-8524-45b1-8d1e-7406d0882e57
+## About
 
-## How can I edit this code?
+Zwitch Payment Gateway enables businesses to accept online payments at just **1.5%** per transaction with 150+ payment options including UPI, cards, net banking, wallets, and more. This repository contains the public-facing marketing landing page.
 
-There are several ways of editing your application.
+## Tech Stack
 
-**Use Lovable**
+| Layer       | Technology                          |
+| ----------- | ----------------------------------- |
+| Framework   | [React 18](https://react.dev)       |
+| Language    | TypeScript                          |
+| Build Tool  | [Vite 5](https://vitejs.dev)        |
+| Styling     | [Tailwind CSS 3](https://tailwindcss.com) |
+| UI Library  | [shadcn/ui](https://ui.shadcn.com) + Radix UI primitives |
+| Animation   | [Framer Motion](https://www.framer.com/motion/) |
+| Routing     | React Router v6                     |
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/5538cb0e-8524-45b1-8d1e-7406d0882e57) and start prompting.
+## Getting Started
 
-Changes made via Lovable will be committed automatically to this repo.
+### Prerequisites
 
-**Use your preferred IDE**
+- **Node.js** ≥ 18 — [Install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+- **npm** (ships with Node.js)
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
+### Installation
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
+# Clone the repository
 git clone <YOUR_GIT_URL>
+cd zwitch-pg
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+# Install dependencies
+npm install
 
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Start the development server (http://localhost:8080)
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+### Build for Production
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+```sh
+npm run build    # outputs to dist/
+npm run preview  # preview the production build locally
+```
 
-**Use GitHub Codespaces**
+## Project Structure
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+```
+zwitch-pg/
+├── public/             # Static assets
+├── src/
+│   ├── assets/         # Images & media
+│   ├── components/     # Reusable UI components (shadcn/ui + custom)
+│   ├── hooks/          # Custom React hooks
+│   ├── lib/            # Utility functions
+│   ├── pages/          # Route-level page components
+│   ├── App.tsx         # Root app component with routing
+│   ├── main.tsx        # Entry point
+│   └── index.css       # Global styles & Tailwind directives
+├── index.html          # HTML shell
+├── tailwind.config.ts  # Tailwind configuration
+├── vite.config.ts      # Vite configuration
+└── package.json
+```
 
-## What technologies are used for this project?
+## Scripts
 
-This project is built with:
+| Command           | Description                        |
+| ----------------- | ---------------------------------- |
+| `npm run dev`     | Start dev server with hot reload   |
+| `npm run build`   | Production build                   |
+| `npm run preview` | Preview production build locally   |
+| `npm run lint`    | Run ESLint                         |
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## Deployment
 
-## How can I deploy this project?
+Build the production bundle with `npm run build`, then deploy the `dist/` directory to any static hosting provider (Vercel, Netlify, Cloudflare Pages, etc.).
 
-Simply open [Lovable](https://lovable.dev/projects/5538cb0e-8524-45b1-8d1e-7406d0882e57) and click on Share -> Publish.
+## License
 
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+Proprietary — © Zwitch. All rights reserved.
