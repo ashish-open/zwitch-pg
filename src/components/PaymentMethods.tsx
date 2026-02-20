@@ -23,12 +23,6 @@ const paymentMethods = [
     benefit: "↑ Faster checkout",
   },
   {
-    icon: Wallet,
-    title: "Wallets",
-    description: "Integrate Amazon Pay, Mobikwik, and more for customers who prefer wallet payments.",
-    benefit: "↑ More completed payments",
-  },
-  {
     icon: Calculator,
     title: "EMI Options",
     description: "Offer credit and debit card EMIs to facilitate larger purchases and boost conversions.",
@@ -93,7 +87,7 @@ const PaymentMethods = () => {
         </div>
 
         {/* Desktop: grid */}
-        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 max-w-6xl mx-auto">
+        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
           {paymentMethods.map((method, index) => {
             const Icon = method.icon;
             return (
