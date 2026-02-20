@@ -38,12 +38,12 @@ const paymentMethods = [
 
 const PaymentMethods = () => {
   const { ref, isVisible } = useScrollReveal();
-  
+
   return (
     <section id="payment-methods" className="py-12 md:py-24 relative">
       <div className="container mx-auto px-6" ref={ref}>
         {/* Section Header */}
-        <motion.div 
+        <motion.div
           className="max-w-3xl mx-auto text-center mb-8 md:mb-16"
           initial={{ opacity: 0, y: 30 }}
           animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
@@ -57,7 +57,7 @@ const PaymentMethods = () => {
             Every payment method your customers prefer — optimized for maximum conversions.
           </p>
         </motion.div>
-        
+
         {/* Mobile: horizontal swipe */}
         <div className="md:hidden -mx-6 px-6 overflow-x-auto snap-x snap-mandatory">
           <div className="flex gap-3 pb-2">
@@ -107,12 +107,12 @@ const PaymentMethods = () => {
                   <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 transition-colors">
                     <Icon className="w-7 h-7 text-primary" />
                   </div>
-                  
+
                   <h3 className="font-display font-bold text-lg mb-2">{method.title}</h3>
                   <p className="text-muted-foreground text-sm leading-relaxed mb-3">
                     {method.description}
                   </p>
-                  
+
                   <div className="inline-flex items-center gap-1 text-xs font-semibold text-primary bg-primary/10 px-2 py-1 rounded-full">
                     <TrendingUp className="w-3 h-3" />
                     {method.benefit}

@@ -336,7 +336,7 @@ export function LeadForm({
             </>
           ) : (
             <>
-              Get Flat 1.5% Pricing
+              Get Flat 1.55%* Pricing
               <ArrowRight className="ml-2 h-5 w-5" />
             </>
           )}

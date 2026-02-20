@@ -45,18 +45,18 @@ const Hero = () => {
   };
 
   const handleDocsClick = (placement: string) => {
-    trackEvent("docs_click", { 
-      cta: "api_docs", 
+    trackEvent("docs_click", {
+      cta: "api_docs",
       placement,
       destination: "https://developers.zwitch.io/"
     });
   };
 
   // Handle CTA click - navigate to register with UTM tracking
-  const handleRegisterClick = (e: React.MouseEvent<HTMLAnchorElement>, placement: string) => {
+  const handleRegisterClick = (e: React.MouseEvent<HTMLElement>, placement: string) => {
     e.preventDefault();
-    trackRegisterClick(placement, "Get Flat 1.5% Pricing");
-    const registerUrl = buildRegisterURL({ 
+    trackRegisterClick(placement, "Get Flat 1.55%* Pricing");
+    const registerUrl = buildRegisterURL({
       source: placement,
       content: "hero_cta"
     });
@@ -86,13 +86,13 @@ const Hero = () => {
           {/* 1. Offer Badge */}
           <div className="inline-flex items-center space-x-2 bg-primary/15 border border-primary/40 backdrop-blur-sm px-4 py-2 rounded-full mb-5">
             <Flame className="w-4 h-4 text-primary" />
-            <span className="text-sm font-semibold text-primary">Limited-Time Offer · Flat 1.5% Fee (New Merchants)</span>
+            <span className="text-sm font-semibold text-primary">Limited-Time Offer · Flat 1.55%* Fee (New Merchants)</span>
           </div>
 
           {/* 2. Headline - Max 3 lines on mobile */}
           <h1 className="font-display font-bold text-[28px] leading-[1.2] tracking-tight mb-4">
             Accept Payments Faster.{" "}
-            <span className="gradient-text">Pay Just 1.5%.</span>
+            <span className="gradient-text">Pay Just 1.55%*.</span>
           </h1>
 
           {/* 3. Subheadline */}
@@ -116,52 +116,28 @@ const Hero = () => {
             </span>
           </div>
 
-          {/* 4. Primary CTA - Full width, triggers form */}
-          {!mobileFormOpen && (
-            <Button
-              size="lg"
-              className="bg-primary hover:bg-primary/90 text-primary-foreground w-full h-14 text-base font-semibold shadow-lg"
-              onClick={handleMobileFormOpen}
-            >
-              Get Flat 1.5% Pricing
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
-          )}
+          {/* 4. Primary CTA - Full width, triggers navigation */}
+          <Button
+            size="lg"
+            className="bg-primary hover:bg-primary/90 text-primary-foreground w-full h-14 text-base font-semibold shadow-lg mb-6"
+            onClick={(e) => handleRegisterClick(e, "hero_mobile_cta")}
+          >
+            Get Flat 1.55%* Pricing
+            <ArrowRight className="ml-2 h-5 w-5" />
+          </Button>
 
-          {/* Mobile Form - Collapsed by default, expands on CTA */}
-          {mobileFormOpen && (
-            <div className="bg-card/80 border border-border/60 rounded-2xl p-5 mb-6 animate-in slide-in-from-top-2 duration-300">
-              <div className="flex items-center justify-between mb-4">
-                <p className="font-display font-semibold text-base">
-                  Get <span className="gradient-text">Flat 1.5%</span> Pricing
-                </p>
-                <button
-                  type="button"
-                  onClick={() => setMobileFormOpen(false)}
-                  className="text-muted-foreground hover:text-foreground p-1"
-                  aria-label="Close form"
-                >
-                  <ChevronDown className="w-5 h-5 rotate-180" />
-                </button>
-              </div>
-              <LeadForm
-                variant="hero"
-                idPrefix="heroLeadMobile"
-                onSubmitSuccess={handleFormSuccess}
-              />
-            </div>
-          )}
+          {/* Mobile UI Image */}
+          <div className="relative group mb-8 perspective-1000">
+            <img
+              src="/hero-mobile.png"
+              alt="Zwitch Mobile App"
+              className="w-full h-auto object-contain rounded-2xl shadow-2xl shadow-primary/5 transition-transform duration-500 group-hover:-translate-y-1 group-hover:scale-[1.02]"
+            />
+          </div>
 
           {/* Secondary CTA - Link to register */}
           {!mobileFormOpen && (
             <div className="flex flex-col items-center gap-3 mt-4">
-              <a
-                href="#"
-                onClick={(e) => handleRegisterClick(e, "hero_mobile_secondary")}
-                className="text-sm text-muted-foreground hover:text-foreground py-2 transition-colors"
-              >
-                Already know us? <span className="text-primary underline underline-offset-2">Sign up directly →</span>
-              </a>
               <a
                 href="https://developers.zwitch.io/"
                 target="_blank"
@@ -201,42 +177,41 @@ const Hero = () => {
         {/* ==================== DESKTOP HERO ==================== */}
         <div className="hidden md:flex min-h-screen items-center pt-20">
           <div className="w-full max-w-6xl mx-auto">
-            {/* 60/40 split per PRD */}
-            <div className="grid grid-cols-12 gap-12 items-start">
-              {/* Left Column (60%) - Hero Copy */}
-              <div className="col-span-7 pt-6">
+            {/* 60/40 split per PRD - Refactored for row alignment */}
+            <div className="grid grid-cols-12 gap-x-12">
+              {/* Row 1: Offer Badge */}
+              <div className="col-span-7 pt-6 pb-8">
                 {/* Offer Badge - Sharpened */}
-                <div className="inline-flex items-center space-x-2 bg-primary/15 border border-primary/40 backdrop-blur-sm px-5 py-2.5 rounded-full mb-8">
+                <div className="inline-flex items-center space-x-2 bg-primary/15 border border-primary/40 backdrop-blur-sm px-5 py-2.5 rounded-full">
                   <Flame className="w-4 h-4 text-primary" />
-                  <span className="text-sm font-semibold text-primary">Limited-Time Offer · Flat 1.5% Fee (New Merchants)</span>
+                  <span className="text-sm font-semibold text-primary">Limited-Time Offer · Flat 1.55%* Fee (New Merchants)</span>
+                </div>
+              </div>
+              <div className="col-span-5"></div> {/* Empty space right of badge */}
+
+              {/* Row 2: Headline + CTAs (Left) and Image (Right) */}
+              <div className="col-span-7 flex flex-col justify-between">
+                <div>
+                  {/* Headline - Max 2 lines desktop per PRD */}
+                  <h1 className="font-display font-bold text-5xl lg:text-6xl xl:text-7xl leading-[1.1] tracking-tight mb-6">
+                    Accept Payments Faster.{" "}
+                    <span className="gradient-text">Pay Just 1.55%*.</span>
+                  </h1>
+
+                  {/* Subheadline - Heavy lifting per PRD */}
+                  <p className="text-lg lg:text-xl text-muted-foreground mb-8 max-w-xl leading-relaxed">
+                    Go live in hours with 150+ payment methods, high success rates, and same-day settlements. Trusted by 42 lakh+ businesses across India.
+                  </p>
                 </div>
 
-                {/* Headline - Max 2 lines desktop per PRD */}
-                <h1 className="font-display font-bold text-5xl lg:text-6xl xl:text-7xl leading-[1.1] tracking-tight mb-6">
-                  Accept Payments Faster.{" "}
-                  <span className="gradient-text">Pay Just 1.5%.</span>
-                </h1>
-
-                {/* Subheadline - Heavy lifting per PRD */}
-                <p className="text-lg lg:text-xl text-muted-foreground mb-8 max-w-xl leading-relaxed">
-                  Go live in hours with 150+ payment methods, high success rates, and same-day settlements. Trusted by 42 lakh+ businesses across India.
-                </p>
-
                 {/* CTAs */}
-                <div className="flex items-center gap-4 mb-6">
+                <div className="flex items-center gap-4">
                   <Button
                     size="lg"
                     className="bg-primary hover:bg-primary/90 text-primary-foreground hover-glow h-12 px-6 text-base font-semibold"
-                    onClick={() => {
-                      trackEvent("hero_cta_click", { placement: "hero_desktop", action: "focus_form" });
-                      if (firstFieldId.current) {
-                        const el = document.getElementById(firstFieldId.current) as HTMLInputElement | null;
-                        el?.focus();
-                        el?.scrollIntoView({ behavior: "smooth", block: "center" });
-                      }
-                    }}
+                    onClick={(e) => handleRegisterClick(e, "hero_desktop")}
                   >
-                    Get Flat 1.5% Pricing
+                    Get Flat 1.55%* Pricing
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
 
@@ -251,70 +226,31 @@ const Hero = () => {
                     View API Docs <span className="text-primary/60">(5-min setup)</span>
                   </a>
                 </div>
+              </div>
 
-                {/* Secondary link - Direct register */}
-                <a
-                  href="#"
-                  onClick={(e) => handleRegisterClick(e, "hero_desktop_direct")}
-                  className="inline-block text-sm text-muted-foreground hover:text-foreground transition-colors mb-8"
-                >
-                  Already know us? <span className="text-primary underline underline-offset-2">Sign up directly →</span>
-                </a>
-
-                {/* Stats Row */}
-                <div className="pt-8 border-t border-border/40 max-w-2xl">
-                  <div className="grid grid-cols-4 gap-6">
-                    {stats.map((stat) => (
-                      <div key={stat.label} className="text-left">
-                        <p className="text-2xl lg:text-3xl font-display font-bold gradient-text mb-1">{stat.value}</p>
-                        <p className="text-xs lg:text-sm text-muted-foreground">{stat.label}</p>
-                      </div>
-                    ))}
-                  </div>
+              {/* Right Column Component (Image) */}
+              <div className="col-span-5 relative w-full perspective-1000">
+                <div className="absolute inset-y-0 -right-24 left-0 flex items-stretch justify-start group">
+                  <img
+                    src="/hero-desktop.png"
+                    alt="Zwitch Dashboard"
+                    className="h-full w-auto max-w-[140%] object-contain object-left rounded-xl shadow-2xl shadow-primary/10 transition-transform duration-500 origin-left group-hover:-translate-y-2 group-hover:scale-[1.03]"
+                  />
                 </div>
               </div>
 
-              {/* Right Column (40%) - Lead Form */}
-              <div className="col-span-5">
-                {/* Visually lighter card per PRD: darker bg, softer border */}
-                <Card className="bg-card/80 border-border/50 p-6 lg:p-8 shadow-xl">
-                  <div className="mb-5">
-                    <p className="font-display font-semibold text-lg">
-                      Get <span className="gradient-text">Flat 1.5%</span> Pricing
-                    </p>
-                    <p className="text-xs text-muted-foreground mt-1.5">
-                      Available for new merchants. Subject to approval.
-                    </p>
-                  </div>
-
-                  <LeadForm
-                    variant="hero"
-                    idPrefix="heroLead"
-                    onFirstFieldId={(id) => {
-                      firstFieldId.current = id;
-                    }}
-                    onSubmitSuccess={handleFormSuccess}
-                  />
-
-                  {/* Trust badges under form */}
-                  <div className="mt-5 pt-5 border-t border-border/30 flex items-center justify-center gap-4 text-xs text-muted-foreground">
-                    <span className="flex items-center gap-1">
-                      <Shield className="w-3.5 h-3.5 text-primary/70" />
-                      RBI-licensed
-                    </span>
-                    <span className="text-border/50">•</span>
-                    <span className="flex items-center gap-1">
-                      <Zap className="w-3.5 h-3.5 text-primary/70" />
-                      No setup fee
-                    </span>
-                    <span className="text-border/50">•</span>
-                    <span className="flex items-center gap-1">
-                      <Clock className="w-3.5 h-3.5 text-primary/70" />
-                      Free sandbox
-                    </span>
-                  </div>
-                </Card>
+              {/* Row 3: Stats */}
+              <div className="col-span-7 pt-12 mt-12 border-t border-border/40 max-w-2xl">
+                <div className="grid grid-cols-4 gap-6">
+                  {stats.map((stat) => (
+                    <div key={stat.label} className="text-left">
+                      <p className="text-2xl lg:text-3xl font-display font-bold gradient-text mb-1">{stat.value}</p>
+                      <p className="text-xs lg:text-sm text-muted-foreground">{stat.label}</p>
+                    </div>
+                  ))}
+                </div>
               </div>
+              <div className="col-span-5"></div> {/* Empty space right of stats */}
             </div>
           </div>
         </div>

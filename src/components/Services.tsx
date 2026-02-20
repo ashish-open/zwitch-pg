@@ -47,25 +47,11 @@ const features = [
 
 const Services = () => {
   const { ref, isVisible } = useScrollReveal();
-  
+
   return (
-    <section id="features" className="py-12 md:py-24 bg-secondary/20">
+    <section id="features" className="py-12 bg-secondary/20 md:hidden">
       <div className="container mx-auto px-6" ref={ref}>
-        {/* Section Header */}
-        <motion.div 
-          className="max-w-3xl mx-auto text-center mb-8 md:mb-16"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.6 }}
-        >
-          <h2 className="font-display font-bold text-[24px] md:text-5xl lg:text-6xl mb-3 md:mb-6">
-            Built for{" "}
-            <span className="gradient-text">Scale & Speed</span>
-          </h2>
-          <p className="text-sm md:text-lg text-muted-foreground">
-            Everything you need to accept payments seamlessly — from integration to reconciliation.
-          </p>
-        </motion.div>
+
 
         {/* Mobile: accordion */}
         <div className="md:hidden max-w-2xl mx-auto">
@@ -92,45 +78,7 @@ const Services = () => {
           </Accordion>
         </div>
 
-        {/* Desktop: grid */}
-        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-          {features.map((feature, index) => {
-            const Icon = feature.icon;
-            return (
-              <motion.div
-                key={feature.title}
-                initial={{ opacity: 0, y: 30 }}
-                animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-                transition={{ duration: 0.6, delay: 0.2 + index * 0.1 }}
-              >
-                <div className="relative h-full rounded-[1.25rem] border-[0.75px] border-border p-2">
-                  <GlowingEffect
-                    spread={40}
-                    glow={true}
-                    disabled={false}
-                    proximity={64}
-                    inactiveZone={0.01}
-                    borderWidth={3}
-                  />
-                  <Card className="relative group bg-card border-border p-8 hover:border-primary/50 transition-all duration-300 h-full overflow-hidden">
-                    <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
-                      <Icon className="w-7 h-7 text-primary" />
-                    </div>
-                    
-                    <h3 className="font-display font-bold text-xl mb-2">{feature.title}</h3>
-                    <p className="text-muted-foreground text-sm leading-relaxed mb-3">
-                      {feature.description}
-                    </p>
-                    
-                    <p className="text-xs font-medium text-primary">
-                      → {feature.whyItMatters}
-                    </p>
-                  </Card>
-                </div>
-              </motion.div>
-            );
-          })}
-        </div>
+
       </div>
     </section>
   );

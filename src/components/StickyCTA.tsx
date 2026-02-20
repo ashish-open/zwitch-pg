@@ -31,7 +31,7 @@ const StickyCTA = () => {
 
   const handleCtaClick = (e: React.MouseEvent<HTMLAnchorElement>, placement: string) => {
     e.preventDefault();
-    trackRegisterClick(placement, "Get Flat 1.5% Pricing");
+    trackRegisterClick(placement, "Get Flat 1.55%* Pricing");
     const registerUrl = buildRegisterURL({ source: placement, content: "sticky_cta" });
     window.open(registerUrl, "_blank", "noopener,noreferrer");
   };
@@ -58,7 +58,7 @@ const StickyCTA = () => {
                   size="lg"
                   className="w-full bg-primary hover:bg-primary/90 text-primary-foreground h-12 text-base font-semibold"
                 >
-                  Get Flat 1.5% Pricing
+                  Get Flat 1.55%* Pricing
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </a>
@@ -68,7 +68,7 @@ const StickyCTA = () => {
             <div className="hidden md:flex items-center justify-between gap-4">
               <div className="text-left">
                 <p className="font-display font-semibold text-lg">
-                  Limited Time: <span className="gradient-text">Flat 1.5% Fee</span>
+                  Limited Time: <span className="gradient-text">Flat 1.55%* Fee</span>
                 </p>
                 <p className="text-sm text-muted-foreground">
                   Save up to ₹1 Lakh per crore processed. No setup fees.
@@ -83,7 +83,7 @@ const StickyCTA = () => {
                   size="lg"
                   className="bg-primary hover:bg-primary/90 text-primary-foreground hover-glow whitespace-nowrap"
                 >
-                  Get Flat 1.5% Pricing
+                  Get Flat 1.55%* Pricing
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </a>

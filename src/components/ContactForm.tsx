@@ -24,7 +24,7 @@ const ContactForm = () => {
             transition={{ duration: 0.6 }}
           >
             <h2 className="font-display font-bold text-[24px] md:text-5xl lg:text-6xl mb-3 md:mb-6">
-              Get <span className="gradient-text">1.5%</span> Pricing Today
+              Get <span className="gradient-text">1.55%*</span> Pricing Today
             </h2>
             <p className="text-sm md:text-lg text-muted-foreground">
               Join 42 lakh+ businesses using Zwitch for payments.

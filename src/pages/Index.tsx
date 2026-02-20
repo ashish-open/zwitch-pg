@@ -8,10 +8,9 @@ import { lazy, Suspense, useEffect } from "react";
 
 // Below-fold: lazy-load to reduce initial JS on mobile
 const PaymentMethods = lazy(() => import("@/components/PaymentMethods"));
-const Services = lazy(() => import("@/components/Services"));
+
 const PricingOffer = lazy(() => import("@/components/PricingOffer"));
-const Process = lazy(() => import("@/components/Process"));
-const Testimonials = lazy(() => import("@/components/Testimonials"));
+
 const FAQ = lazy(() => import("@/components/FAQ"));
 const ContactForm = lazy(() => import("@/components/ContactForm"));
 
@@ -54,10 +53,7 @@ const Index = () => {
         <TrustBadges />
         <Suspense fallback={null}>
           <PaymentMethods />
-          <Services />
           <PricingOffer />
-          <Process />
-          <Testimonials />
           <FAQ />
           <ContactForm />
         </Suspense>

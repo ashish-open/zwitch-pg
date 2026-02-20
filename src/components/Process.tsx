@@ -27,7 +27,7 @@ const steps = [
     number: "04",
     icon: Rocket,
     title: "Go Live",
-    description: "Start accepting payments at just 1.5% and grow your business.",
+    description: "Start accepting payments at just 1.55%* and grow your business.",
   }
 ];
 

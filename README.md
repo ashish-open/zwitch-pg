@@ -4,7 +4,7 @@ A modern, high-performance landing page for the **Zwitch Payment Gateway**, buil
 
 ## About
 
-Zwitch Payment Gateway enables businesses to accept online payments at just **1.5%** per transaction with 150+ payment options including UPI, cards, net banking, wallets, and more. This repository contains the public-facing marketing landing page.
+Zwitch Payment Gateway enables businesses to accept online payments at just **1.55%*** per transaction with 150+ payment options including UPI, cards, net banking, wallets, and more. This repository contains the public-facing marketing landing page.
 
 ## Tech Stack
 

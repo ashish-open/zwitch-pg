@@ -11,8 +11,8 @@ import {
 
 const faqs = [
   {
-    question: "Who is eligible for the 1.5% rate?",
-    answer: "The 1.5% rate is available for new merchants signing up during our limited-time offer period. All businesses completing our standard onboarding process qualify. Existing merchants can contact support for upgrade options."
+    question: "Who is eligible for the 1.55%* rate?",
+    answer: "The 1.55%* rate is available for new merchants signing up during our limited-time offer period. All businesses completing our standard onboarding process qualify. Existing merchants can contact support for upgrade options."
   },
   {
     question: "How fast are settlements?",
@@ -28,7 +28,7 @@ const faqs = [
   },
   {
     question: "Are there any hidden charges?",
-    answer: "No hidden charges, ever. The 1.5% rate includes all payment methods — UPI, cards, net banking, and wallets. No setup fees, no annual fees, no minimum transaction requirements."
+    answer: "No hidden charges, ever. The 1.55%* rate includes all payment methods — UPI, cards, net banking, and wallets. No setup fees, no annual fees, no minimum transaction requirements."
   },
   {
     question: "What support is available?",
