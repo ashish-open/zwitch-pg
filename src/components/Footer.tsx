@@ -21,8 +21,8 @@ const Footer = () => {
             </p>
             <p className="text-xs text-muted-foreground mt-2">
               Support:{" "}
-              <a href="mailto:support@zwitch.io" className="hover:underline">
-                support@zwitch.io
+              <a href="mailto:letstalk@zwitch.io" className="hover:underline">
+                letstalk@zwitch.io
               </a>
             </p>
           </div>
