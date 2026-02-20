@@ -120,10 +120,7 @@ const Header = () => {
 
             {/* Zwitch Logo */}
             <a href="https://www.zwitch.io" className="flex items-center space-x-2">
-              <svg className="w-10 h-8 shrink-0" viewBox="0 0 100 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M 50 40 L 80 40 L 100 0 L 70 0 Z" fill="#E8A282" />
-                <path d="M 20 40 L 50 40 L 30 80 L 0 80 Z" fill="#FA4D1D" />
-              </svg>
+              <img src="/zwitch-favicon.png" alt="Zwitch Logo" className="h-7 w-auto" />
               <span className="font-display font-bold text-2xl tracking-[0.15em] text-foreground">ZWITCH</span>
             </a>
           </div>
