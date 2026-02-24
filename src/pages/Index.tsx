@@ -12,7 +12,6 @@ const PaymentMethods = lazy(() => import("@/components/PaymentMethods"));
 const PricingOffer = lazy(() => import("@/components/PricingOffer"));
 
 const FAQ = lazy(() => import("@/components/FAQ"));
-const ContactForm = lazy(() => import("@/components/ContactForm"));
 
 const Index = () => {
   // Initialize analytics & capture UTM params on page load
@@ -55,7 +54,6 @@ const Index = () => {
           <PaymentMethods />
           <PricingOffer />
           <FAQ />
-          <ContactForm />
         </Suspense>
       </main>
       <Footer />
