@@ -158,9 +158,9 @@ const Hero = () => {
                 return (
                   <div
                     key={stat.label}
-                    className="rounded-xl border border-border/50 bg-card/30 px-4 py-3"
+                    className="rounded-xl border border-border/50 bg-card/30 px-4 py-3 text-center"
                   >
-                    <div className="flex items-center gap-2 mb-1.5">
+                    <div className="flex items-center justify-center gap-2 mb-1.5">
                       <div className="h-7 w-7 rounded-lg bg-primary/10 flex items-center justify-center">
                         <Icon className="h-3.5 w-3.5 text-primary" />
                       </div>
@@ -239,18 +239,17 @@ const Hero = () => {
                 </div>
               </div>
 
-              {/* Row 3: Stats */}
-              <div className="col-span-7 pt-12 mt-12 border-t border-border/40 max-w-2xl">
-                <div className="grid grid-cols-4 gap-6">
+              {/* Row 3: Stats - Centered */}
+              <div className="col-span-12 pt-12 mt-12 border-t border-border/40">
+                <div className="grid grid-cols-4 gap-4 md:gap-6 max-w-5xl mx-auto">
                   {stats.map((stat) => (
-                    <div key={stat.label} className="text-left">
+                    <div key={stat.label} className="text-center">
                       <p className="text-2xl lg:text-3xl font-display font-bold gradient-text mb-1">{stat.value}</p>
                       <p className="text-xs lg:text-sm text-muted-foreground">{stat.label}</p>
                     </div>
                   ))}
                 </div>
               </div>
-              <div className="col-span-5"></div> {/* Empty space right of stats */}
             </div>
           </div>
         </div>
