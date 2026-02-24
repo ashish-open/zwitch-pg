@@ -1,6 +1,24 @@
-import { Linkedin, Twitter, Github } from "lucide-react";
+import { Linkedin, Instagram } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { trackRegisterClick, buildRegisterURL } from "@/lib/analytics";
+
+// Custom X (Twitter) Logo Component - New X branding
+// Matches the official X logo: two intersecting diagonals
+const XIcon = ({ className }: { className?: string }) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    className={className}
+    aria-label="X (formerly Twitter)"
+  >
+    {/* Top-left to bottom-right: solid diagonal line */}
+    <path
+      d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+      fill="currentColor"
+    />
+  </svg>
+);
 
 const Footer = () => {
   return (
@@ -79,14 +97,14 @@ const Footer = () => {
 
         {/* Social Icons */}
         <div className="flex items-center space-x-4 mb-8">
-          <a href="https://www.linkedin.com/company/zwitch/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center hover:bg-primary/10 hover:text-primary transition-colors">
+          <a href="https://www.linkedin.com/company/zwitchdotio/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center hover:bg-primary/10 hover:text-primary transition-colors">
             <Linkedin className="w-5 h-5" />
           </a>
-          <a href="https://twitter.com/ZwitchHQ" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center hover:bg-primary/10 hover:text-primary transition-colors">
-            <Twitter className="w-5 h-5" />
+          <a href="https://x.com/zwitchdotio" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center hover:bg-primary/10 hover:text-primary transition-colors">
+            <XIcon className="w-5 h-5" />
           </a>
-          <a href="https://github.com/openMoney" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center hover:bg-primary/10 hover:text-primary transition-colors">
-            <Github className="w-5 h-5" />
+          <a href="https://www.instagram.com/zwitchdotio/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center hover:bg-primary/10 hover:text-primary transition-colors">
+            <Instagram className="w-5 h-5" />
           </a>
         </div>
 

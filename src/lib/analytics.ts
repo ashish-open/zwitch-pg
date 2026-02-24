@@ -110,36 +110,20 @@ export function getFirstTouchUTM(): UTMParams & { timestamp?: string; landing_pa
 // ZWITCH REGISTER URL BUILDER
 // ========================
 
-const ZWITCH_REGISTER_URL = "https://dashboard.zwitch.io/register";
+const ZWITCH_REGISTER_URL = "https://app.zwitch.io/register";
 
 export interface RegisterURLOptions {
   source: string;  // Where the CTA is placed (hero, sticky, footer, etc.)
-  campaign?: string; // Override campaign if needed
-  content?: string; // Specific CTA identifier
+  campaign?: string; // Override campaign if needed (deprecated - kept for backward compatibility)
+  content?: string; // Specific CTA identifier (deprecated - kept for backward compatibility)
 }
 
 /**
- * Build Zwitch register URL with UTM tracking
+ * Build Zwitch register URL (simplified - no query parameters)
  */
 export function buildRegisterURL(options: RegisterURLOptions): string {
-  const { source, campaign, content } = options;
-  const storedUTM = getStoredUTMParams();
-  
-  const params = new URLSearchParams();
-  
-  // Use stored UTM or fallback to landing page values
-  params.set("utm_source", storedUTM.utm_source || "zwitch_landing");
-  params.set("utm_medium", storedUTM.utm_medium || "website");
-  params.set("utm_campaign", campaign || storedUTM.utm_campaign || "pg_landing_jan2026");
-  params.set("utm_content", content || `cta_${source}`);
-  
-  // Add session ID for tracking
-  params.set("sid", getSessionId());
-  
-  // Add landing page reference
-  params.set("ref", source);
-  
-  return `${ZWITCH_REGISTER_URL}?${params.toString()}`;
+  // Return simple URL without any query parameters
+  return ZWITCH_REGISTER_URL;
 }
 
 // ========================
