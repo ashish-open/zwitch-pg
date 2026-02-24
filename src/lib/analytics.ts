@@ -148,6 +148,11 @@ export function buildRegisterURL(options: RegisterURLOptions): string {
 
 export function trackEvent(eventName: string, params: AnalyticsEventParams = {}) {
   try {
+    // Ensure dataLayer is initialized (safety check)
+    if (typeof window !== "undefined" && !window.dataLayer) {
+      window.dataLayer = [];
+    }
+
     // Enrich with session and UTM data
     const enrichedParams = {
       ...params,
